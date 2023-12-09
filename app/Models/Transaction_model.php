@@ -30,7 +30,6 @@ class Transaction_model extends Model
      */
     protected $fillable = [
         'trans_type',
-        'trans_date',
         'income',
         'description',
         'update_balance',

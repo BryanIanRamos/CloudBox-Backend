@@ -22,8 +22,6 @@ class Sales_request extends FormRequest
     public function rules(): array
     {
         return [
-            'price'         => 'required|numeric|between:0.01,9999999.99',
-            'date'          => 'string|max:255',
             'quantity'      => 'integer',
             'total_amount'  => 'required|numeric|between:0.01,9999999.99',
             'prod_id'       => 'required|integer',

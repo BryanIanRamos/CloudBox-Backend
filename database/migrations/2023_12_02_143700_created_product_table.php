@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('prod_name');
             $table->decimal('price', 10, 2);
             $table->string('status');
-            $table->unsignedBigInteger('category_id'); // Adjusted foreign key name
-            $table->foreign('category_id')->references('category_id')->on('category');
+            $table->string('category_name'); // Adjusted foreign key name
+            $table->foreign('category_name')->references('category_name')->on('category');
             $table->timestamps();
         });
     }

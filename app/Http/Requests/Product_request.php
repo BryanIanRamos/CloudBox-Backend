@@ -25,7 +25,7 @@ class Product_request extends FormRequest
             'prod_name'     => 'required|string|max:255',
             'price'         => 'required|numeric|between:0.01,9999999.99',
             'status'        => 'string|max:255',
-            'category_id'   => 'required|integer',
+            'category_name' => 'string|max:255',
         ];
     }
 }

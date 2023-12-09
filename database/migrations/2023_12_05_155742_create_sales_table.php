@@ -14,8 +14,6 @@ return new class extends Migration
 
         Schema::create('sales', function (Blueprint $table) {
             $table->id('sales_id');
-            $table->decimal('price'); //int to decimal
-            $table->date('date');
             $table->integer('quantity');
             $table->decimal('total_amount', 10, 2); //int to decimal
             $table->unsignedBigInteger('prod_id');

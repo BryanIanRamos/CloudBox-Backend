@@ -23,7 +23,6 @@ class Transaction_request extends FormRequest
     {
         return [
             'trans_type'        => 'required|string|max:255',
-            'trans_date'        => 'required|string|max:255',
             'income'            => 'required|integer',
             'description'       => 'string|max:255',
             'update_balance'    => 'required|numeric|between:0.01,9999999.99',

@@ -32,6 +32,6 @@ class Product_model extends Model
         'prod_name',
         'price',
         'status',
-        'category_id',
+        'category_name',
     ];
 }

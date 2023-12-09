@@ -29,8 +29,6 @@ class Sales_model extends Model
      * @var array
      */
     protected $fillable = [
-        'price',
-        'date',
         'quantity',
         'total_amount',
         'prod_id',

@@ -23,7 +23,6 @@ return new class extends Migration
         Schema::create('transaction', function (Blueprint $table) {
             $table->id('trans_id');
             $table->string('trans_type');
-            $table->date('trans_date');
             $table->decimal('income', 10, 2);
             $table->string('description');
             $table->decimal('update_balance', 10, 2);

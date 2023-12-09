@@ -21,7 +21,7 @@ class Category_model extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'category_id';
+    protected $primaryKey = 'category_name';
 
     /**
      * The attributes that are mass assignable.
@@ -29,7 +29,7 @@ class Category_model extends Model
      * @var array
      */
     protected $fillable = [
-        'category_name',
+        // 'category_name',
         'description',
     ];
 }
