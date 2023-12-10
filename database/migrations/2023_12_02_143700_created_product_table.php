@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id('prod_id');
             $table->string('prod_name');
             $table->decimal('price', 10, 2);
+            $table->string('description');
             $table->string('status');
-            $table->string('category_name'); // Adjusted foreign key name
-            $table->foreign('category_name')->references('category_name')->on('category');
+            $table->unsignedBigInteger('category_id'); // Adjusted foreign key name
+            $table->foreign('category_id')->references('category_id')->on('category');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Stock_request;
 use App\Models\Stock_Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Stock_controller extends Controller
 {
@@ -59,5 +60,15 @@ class Stock_controller extends Controller
         $stock->delete();
 
         return $stock;
+    }
+
+    public function userStock(string $id)
+    {
+        $leftJoin = DB::table('stock')
+            ->leftJoin('users', 'stock.account_id', '=', 'users.id')
+            ->select('stock.*', 'users.*')
+            ->get();
+
+        return $leftJoin;
     }
 }

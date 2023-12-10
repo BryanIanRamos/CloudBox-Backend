@@ -33,59 +33,64 @@ Route::post('/user', [User_controller::class,  'store'])->name('user.store');
 
 // Route::post('/user', [User_controller::class,  'store'])->name('user.store');
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [Authentication_controller::class, 'logout']);
+// Route::middleware('auth:sanctum')->group(function () {
+Route::post('/logout', [Authentication_controller::class, 'logout']);
 
 
-    Route::controller(User_controller::class)->group(function () {
-        Route::get('/user',                 'index');
-        Route::get('/user/{id}',            'show');
-        Route::post('/name/user/{id}',      'name')->name('user.name');
-        Route::post('/email/user/{id}',     'email')->name('user.email');
-        Route::post('/password/user/{id}',  'password')->name('user.password');
-        Route::delete('/user/{id}',         'destroy');
-    });
-
-    Route::controller(Stock_controller::class)->group(function () {
-        Route::get('/stock',            'index');
-        Route::get('/stock/{id}',       'show');
-        Route::put('/stock/{id}',       'update');
-        Route::post('/stock',           'store');
-        Route::delete('/stock/{id}',    'destroy');
-    });
-
-    Route::controller(Product_controller::class)->group(function () {
-        Route::get('/product',            'index');
-        Route::get('/product/{id}',       'show');
-        Route::put('/product/{id}',       'update');
-        Route::post('/product',           'store');
-        Route::delete('/product/{id}',    'destroy');
-    });
-
-    Route::controller(Sales_controller::class)->group(function () {
-        Route::get('/sales',            'index');
-        Route::get('/sales/{id}',       'show');
-        Route::put('/sales/{id}',       'update');
-        Route::post('/sales',           'store');
-        Route::delete('/sales/{id}',    'destroy');
-    });
-
-    Route::controller(Transaction_controller::class)->group(function () {
-        Route::get('/transaction',            'index');
-        Route::get('/transaction/{id}',       'show');
-        Route::put('/transaction/{id}',       'update');
-        Route::post('/transaction',           'store');
-        Route::delete('/transaction/{id}',    'destroy');
-    });
-
-    Route::controller(Category_controller::class)->group(function () {
-        Route::get('/category',            'index');
-        Route::get('/category/{id}',       'show');
-        Route::put('/category/{id}',       'update');
-        Route::post('/category',           'store');
-        Route::delete('/category/{id}',    'destroy');
-    });
+Route::controller(User_controller::class)->group(function () {
+    Route::get('/user',                 'index');
+    Route::get('/user/{id}',            'show');
+    Route::post('/name/user/{id}',      'name')->name('user.name');
+    Route::post('/email/user/{id}',     'email')->name('user.email');
+    Route::post('/password/user/{id}',  'password')->name('user.password');
+    Route::delete('/user/{id}',         'destroy');
+    Route::get('/user/transaction',     'userTrans');
+    Route::get('/user/stock',     'userStocks');
 });
+
+Route::controller(Stock_controller::class)->group(function () {
+    Route::get('/stock',            'index');
+    Route::get('/stock/user',       'userStock');
+    Route::get('/stock/{id}',       'show');
+    Route::put('/stock/{id}',       'update');
+    Route::post('/stock',           'store');
+    Route::delete('/stock/{id}',    'destroy');
+});
+
+Route::controller(Product_controller::class)->group(function () {
+    Route::get('/product',            'index');
+    Route::get('/product/category',   'proDCategory');
+    Route::get('/product/stock',      'prodStock');
+    Route::get('/product/{id}',       'show');
+    Route::put('/product/{id}',       'update');
+    Route::post('/product',           'store');
+    Route::delete('/product/{id}',    'destroy');
+});
+
+Route::controller(Sales_controller::class)->group(function () {
+    Route::get('/sales',            'index');
+    Route::get('/sales/{id}',       'show');
+    Route::put('/sales/{id}',       'update');
+    Route::post('/sales',           'store');
+    Route::delete('/sales/{id}',    'destroy');
+});
+
+Route::controller(Transaction_controller::class)->group(function () {
+    Route::get('/transaction',            'index');
+    Route::get('/transaction/{id}',       'show');
+    Route::put('/transaction/{id}',       'update');
+    Route::post('/transaction',           'store');
+    Route::delete('/transaction/{id}',    'destroy');
+});
+
+Route::controller(Category_controller::class)->group(function () {
+    Route::get('/category',            'index');
+    Route::get('/category/{id}',       'show');
+    Route::put('/category/{id}',       'update');
+    Route::post('/category',           'store');
+    Route::delete('/category/{id}',    'destroy');
+});
+// });
 
 
 

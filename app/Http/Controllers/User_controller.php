@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User_request;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class User_controller extends Controller
@@ -108,5 +109,26 @@ class User_controller extends Controller
         $user->delete();
 
         return $user;
+    }
+
+    // TO BE FIX 
+    // public function userTrans(string $id)
+    // {
+    //     $leftJoin = DB::table('users')
+    //         ->leftJoin('transaction_tbl', 'users.id', '=', 'transaction.account_id')
+    //         ->select('users.*', 'transaction.*')
+    //         ->get();
+
+    //     return $leftJoin;
+    // }
+
+    public function userStocks(string $id)
+    {
+        $leftJoin = DB::table('users')
+            ->leftJoin('stock', 'users.id', '=', 'stock.account_id')
+            ->select('users.*', 'stock.*')
+            ->get();
+
+        return $leftJoin;
     }
 }

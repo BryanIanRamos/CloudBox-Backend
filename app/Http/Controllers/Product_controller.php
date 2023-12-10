@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Product_request;
 use App\Models\Product_model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class Product_controller extends Controller
 {
@@ -59,4 +61,31 @@ class Product_controller extends Controller
 
         return $product;
     }
+
+    // public function proDCategory()
+    // {
+    //     $leftJoin = DB::table('product')
+    //         ->leftJoin('category', 'product.category_id', '=', 'category.category_id')
+    //         ->select('product.*', 'category.*')
+    //         ->get();
+
+    //     return $leftJoin;
+    // }
+
+    public function prodStock()
+    {
+        $leftJoin = DB::table('product')
+            ->leftJoin('stock', 'product.prod_id', '=', 'stock.prod_id')
+            ->select('product.*', 'stock.*')
+            ->get();
+
+        return $leftJoin;
+    }
+
+    // public function store(Product_request $request)
+    // {
+    //     $product = Product_model::create($request->validated());
+
+    //     return $product;
+    // }
 }
