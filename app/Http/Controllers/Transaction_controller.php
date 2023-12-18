@@ -64,8 +64,9 @@ class Transaction_controller extends Controller
     public function userTrans()
     {
         $response = DB::table('transactions')
-            ->select('transactions.*', 'users.*')
+            ->select('transactions.*', 'users.first_name', 'users.last_name', 'users.account_id')
             ->join('users', 'transactions.account_id', '=', 'users.account_id')
+            ->orderBy('transactions.created_at', 'desc')
             ->get();
 
         return $response;

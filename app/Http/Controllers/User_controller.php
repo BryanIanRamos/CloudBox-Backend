@@ -111,12 +111,38 @@ class User_controller extends Controller
         return $user;
     }
 
+    // public function userOverallIncome()
+    // {
+    //     $incomeByUser = DB::table('users')
+    //         ->leftJoin('transactions', 'users.account_id', '=', 'transactions.account_id')
+    //         ->select('users.first_name', 'users.last_name', DB::raw('SUM(transactions.income) as total_income'))
+    //         ->groupBy('users.first_name', 'users.last_name')
+    //         ->get();
+
+    //     return $incomeByUser;
+    // }
+
+    public function userOverallIncome($id)
+    {
+        $incomeByUser = DB::table('users')
+            ->leftJoin('transactions', 'users.account_id', '=', 'transactions.account_id')
+            ->select('users.first_name', 'users.last_name', DB::raw('SUM(transactions.income) as total_income'))
+            ->when($id, function ($query, $id) {
+                return $query->where('users.account_id', $id);
+            })
+            ->groupBy('users.first_name', 'users.last_name')
+            ->get();
+
+        return $incomeByUser;
+    }
+
     // TO BE FIX 
     // public function userTrans()
     // {
     //     $leftJoin = DB::table('users')
-    //         ->leftJoin('transactions as t', 'users.id', '=', 't.account_id')
-    //         ->select('users.*', 't.*')
+    //         ->leftJoin('transactions as t', 'users.account_id', '=', 't.account_id')
+    //         ->select('users.*',  't.*')
+    //         // ->select('users.first_name', 'users.last_name', 't.created_at', 't.income')
     //         ->get();
 
     //     return $leftJoin;

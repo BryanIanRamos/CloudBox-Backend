@@ -36,4 +36,11 @@ class Transaction_model extends Model
         'location',
         'account_id',
     ];
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
 }

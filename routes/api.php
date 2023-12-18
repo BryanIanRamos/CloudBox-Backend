@@ -46,7 +46,8 @@ Route::controller(User_controller::class)->group(function () {
     Route::post('/password/user/{id}',  'password')->name('user.password');
     Route::delete('/user/{id}',         'destroy');
 
-    // Route::get('/user/trans',           'userTrans');
+    // Route::get('/userIncome/{id}',      'userOverallIncome');
+    // Route::get('/user-trans',           'userTrans');
     // Route::get('/user/stock',           'userStocks');
 });
 
@@ -111,7 +112,7 @@ Route::controller(ActivityLog_controller::class)->group(function () {
     Route::post('/activity',           'store');
     Route::delete('/activity/{id}',    'destroy');
 
-    Route::get('/user-activity',            'userActivity');
+    Route::get('/activity-log',       'userActivity');
 });
 // });
 
