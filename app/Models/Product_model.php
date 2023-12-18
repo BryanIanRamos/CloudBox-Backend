@@ -34,5 +34,6 @@ class Product_model extends Model
         'description',
         'status',
         'category_id',
+        'image'
     ];
 }

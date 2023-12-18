@@ -62,7 +62,7 @@ class Stock_controller extends Controller
         return $stock;
     }
 
-    public function userStock(string $id)
+    public function userStock()
     {
         $leftJoin = DB::table('stock')
             ->leftJoin('users', 'stock.account_id', '=', 'users.id')
@@ -71,4 +71,13 @@ class Stock_controller extends Controller
 
         return $leftJoin;
     }
+
+    // public function sumStock()
+    // {
+    //     // Sum the 'stock' column for all products
+    //     $overallStock = Stock_Model::sum('stock');
+
+    //     // Now, $overallStock contains the sum of the 'stock' column for all products
+    //     return $overallStock;
+    // }
 }

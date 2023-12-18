@@ -23,6 +23,8 @@ class Category_controller extends Controller
     {
         $category = Category_model::create($request->validated());
 
+        // return response()->json([$category]);
+
         return $category;
     }
 

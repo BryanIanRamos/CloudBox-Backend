@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Transaction_request;
 use App\Models\Transaction_model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Transaction_controller extends Controller
 {
@@ -58,5 +59,15 @@ class Transaction_controller extends Controller
         $transaction->delete();
 
         return $transaction;
+    }
+
+    public function userTrans()
+    {
+        $response = DB::table('transactions')
+            ->leftJoin('users', 'transactions.account_id', '=', 'users.account_id')
+            ->select('transactions.*', 'users.*')
+            ->get();
+
+        return $response;
     }
 }

@@ -112,23 +112,86 @@ class User_controller extends Controller
     }
 
     // TO BE FIX 
-    // public function userTrans(string $id)
+    // public function userTrans()
     // {
     //     $leftJoin = DB::table('users')
-    //         ->leftJoin('transaction_tbl', 'users.id', '=', 'transaction.account_id')
-    //         ->select('users.*', 'transaction.*')
+    //         ->leftJoin('transactions as t', 'users.id', '=', 't.account_id')
+    //         ->select('users.*', 't.*')
     //         ->get();
 
     //     return $leftJoin;
     // }
 
-    public function userStocks(string $id)
-    {
-        $leftJoin = DB::table('users')
-            ->leftJoin('stock', 'users.id', '=', 'stock.account_id')
-            ->select('users.*', 'stock.*')
-            ->get();
+    // public function userTrans()
+    // {
+    //     $join = DB::table('users')
+    //         ->join('transactions as t', 'users.id', '=', 't.account_id')
+    //         ->select('users.name', 'users.email', 't.trans_id', 't.trans_type', 't.income', 't.description', 't.update_balance', 't.location')
+    //         ->get();
 
-        return $leftJoin;
-    }
+    //     return $join;
+    // }
+
+    // public function userTrans()
+    // {
+    //     $join = DB::table('users')
+    //         ->join('transactions as t', 'users.id', '=', 't.account_id')
+    //         ->select(
+    //             'users.name',
+    //             'users.email',
+    //             't.trans_id',
+    //             't.trans_type',
+    //             't.income',
+    //             't.description',
+    //             't.update_balance',
+    //             't.location'
+    //         )
+    //         ->get();
+
+    //     return $join;
+    // }
+
+    // public function userTrans()
+    // {
+    //     $response = DB::table('users')
+    //         ->select(
+    //             'users.name',
+    //             'users.email',
+    //             't.trans_id',
+    //             't.trans_type',
+    //             't.income',
+    //             't.description',
+    //             't.update_balance',
+    //             't.location'
+    //         )
+    //         ->join('transactions as t', 'users.id', '=', 't.account_id')
+    //         ->get();
+    //     if ($response->isEmpty()) {
+    //         [
+    //             'status'    => 'error',
+    //             'message'   => "No data set"
+    //         ];
+    //     } else {
+    //         return $response;
+    //     }
+    // }
+
+
+    // public function userTrans()
+    // {
+    //     $usersWithTransactions = User::with('transactions')->get();
+
+    //     return $usersWithTransactions;
+    // }
+
+
+    // public function userStocks(string $id)
+    // {
+    //     $leftJoin = DB::table('users')
+    //         ->leftJoin('stock', 'users.id', '=', 'stock.account_id')
+    //         ->select('users.*', 'stock.*')
+    //         ->get();
+
+    //     return $leftJoin;
+    // }
 }

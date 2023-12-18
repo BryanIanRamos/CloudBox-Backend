@@ -8,9 +8,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User  extends Authenticatable
+// extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    protected $primaryKey = 'account_id';
+    // /**
+    //  * The primary key associated with the table.
+    //  *
+    //  * @var string
+    //  */
+    // protected $primaryKey = 'account_id';
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +27,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
+
     ];
 
     /**
@@ -42,4 +53,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getAuthIdentifierName()
+    {
+        return 'account_id';
+    }
+
+    // public function transactions()
+    // {
+    //     return $this->hasMany(Transaction_model::class, 'account_id', 'account_id');
+    // }
 }

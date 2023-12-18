@@ -20,7 +20,7 @@ return new class extends Migration
         // location ==> varchar
         // account_id(FK)
 
-        Schema::create('transaction', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id('trans_id');
             $table->string('trans_type');
             $table->decimal('income', 10, 2);
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('location');
             $table->unsignedBigInteger('account_id');
 
-            $table->foreign('account_id')->references('id')->on('users');
+            $table->foreign('account_id')->references('account_id')->on('users');
             $table->timestamps();
         });
     }

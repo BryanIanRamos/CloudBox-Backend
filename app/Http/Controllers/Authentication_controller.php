@@ -25,12 +25,18 @@ class Authentication_controller extends Controller
             ]);
         }
 
-        $response = [
-            'user'  => $user,
-            'token' => $user->createToken($request->email)->plainTextToken
-        ];
 
-        return $response;
+
+        return response()->json(
+            [
+                'message' => 'Login successful',
+                'data' => [
+                    'user' => $user,
+                    'token' => $user->createToken($request->email)->plainTextToken
+                ],
+            ],
+            200
+        );
     }
 
     /**

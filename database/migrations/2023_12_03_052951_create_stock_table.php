@@ -20,7 +20,7 @@ return new class extends Migration
 
 
             $table->foreign('prod_id')->references('prod_id')->on('product'); // Adjusted foreign key references
-            $table->foreign('account_id')->references('id')->on('users'); // Corrected reference to 'users' table
+            $table->foreign('account_id')->references('account_id')->on('users'); // Corrected reference to 'users' table
         });
     }
 

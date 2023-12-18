@@ -28,13 +28,15 @@ class User_request extends FormRequest
             ];
         } else if (request()->routeIs('user.store')) {
             return [
-                'name'      =>  'required|string|max:255',
-                'email'     =>  'required|string|email|unique:App\Models\User,email|max:255',
-                'password'  =>  'required|min:8',
+                'first_name'     =>  'required|string|max:255',
+                'last_name'      =>  'required|string|max:255',
+                'email'          =>  'required|string|email|unique:App\Models\User,email|max:255',
+                'password'       =>  'required|min:8',
             ];
         } else if (request()->routeIs('user.name')) {
             return [
-                'name'      =>  'required|string|max:255',
+                'first_name'     =>  'required|string|max:255',
+                'last_name'      =>  'required|string|max:255',
             ];
         } else if (request()->routeIs('user.email')) {
             return [

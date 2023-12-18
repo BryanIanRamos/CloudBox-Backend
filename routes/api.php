@@ -44,12 +44,14 @@ Route::controller(User_controller::class)->group(function () {
     Route::post('/email/user/{id}',     'email')->name('user.email');
     Route::post('/password/user/{id}',  'password')->name('user.password');
     Route::delete('/user/{id}',         'destroy');
-    Route::get('/user/transaction',     'userTrans');
-    Route::get('/user/stock',     'userStocks');
+
+    // Route::get('/user/trans',           'userTrans');
+    // Route::get('/user/stock',           'userStocks');
 });
 
 Route::controller(Stock_controller::class)->group(function () {
     Route::get('/stock',            'index');
+    // Route::get('/stock/sum',        'sumStock');
     Route::get('/stock/user',       'userStock');
     Route::get('/stock/{id}',       'show');
     Route::put('/stock/{id}',       'update');
@@ -59,12 +61,15 @@ Route::controller(Stock_controller::class)->group(function () {
 
 Route::controller(Product_controller::class)->group(function () {
     Route::get('/product',            'index');
-    Route::get('/product/category',   'proDCategory');
-    Route::get('/product/stock',      'prodStock');
     Route::get('/product/{id}',       'show');
     Route::put('/product/{id}',       'update');
-    Route::post('/product',           'store');
+    Route::post('/product',           'store')->name('product.store');
     Route::delete('/product/{id}',    'destroy');
+    Route::put('/product/img/{id}',    'image')->name('product.image');
+
+    // Joined Tables 
+    Route::get('/product/category',   'proDCategory');
+    Route::get('/product/stock',      'prodStock');
 });
 
 Route::controller(Sales_controller::class)->group(function () {
@@ -81,6 +86,8 @@ Route::controller(Transaction_controller::class)->group(function () {
     Route::put('/transaction/{id}',       'update');
     Route::post('/transaction',           'store');
     Route::delete('/transaction/{id}',    'destroy');
+
+    Route::get('/transaction/user',    'userTrans');
 });
 
 Route::controller(Category_controller::class)->group(function () {
