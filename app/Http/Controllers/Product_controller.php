@@ -143,7 +143,7 @@ class Product_controller extends Controller
 
             $product->update($validatedData);
 
-            return response()->json(['message' => 'Product updated successfully', 'product' => $product], 200);
+            return response()->json(['message' => 'Product updated successfully huhiuhiuhiuhiuhiuhiuh', 'product' => $product], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to update product', 'error' => $e->getMessage()], 500);
         }

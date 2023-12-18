@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Sales_request;
 use App\Models\Sales_model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Sales_controller extends Controller
 {
@@ -58,5 +59,25 @@ class Sales_controller extends Controller
         $product->delete();
 
         return $product;
+    }
+
+    // public function annualSales()
+    // {
+    //     $currentYear = date('Y');
+
+    //     $totalSales = DB::table('sales')
+    //         ->whereYear('created_at', $currentYear)
+    //         ->sum('total_amount');
+
+    //     return $totalSales;
+    // }
+
+    public function annualSales($year)
+    {
+        $totalSales = DB::table('sales')
+            ->whereYear('created_at', $year)
+            ->sum('total_amount');
+
+        return $totalSales;
     }
 }

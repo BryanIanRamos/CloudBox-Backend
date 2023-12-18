@@ -64,10 +64,31 @@ class Transaction_controller extends Controller
     public function userTrans()
     {
         $response = DB::table('transactions')
-            ->leftJoin('users', 'transactions.account_id', '=', 'users.account_id')
             ->select('transactions.*', 'users.*')
+            ->join('users', 'transactions.account_id', '=', 'users.account_id')
             ->get();
 
         return $response;
+    }
+
+    public function transSort()
+    {
+        $totalIncome = DB::table('transactions')
+            ->selectRaw('SUM(income) as total_income')
+            ->get();
+
+        return $totalIncome;
+    }
+
+    public function transBalance()
+    {
+        $currentBalance = DB::table('transactions')
+            ->orderByDesc('created_at') // You can change 'created_at' to any column you use for ordering
+            ->limit(1)
+            ->selectRaw('update_balance as CurrentBalance')
+            // ->value('update_balance')
+            ->get();
+
+        return $currentBalance;
     }
 }

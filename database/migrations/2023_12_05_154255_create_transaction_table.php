@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('description');
             $table->decimal('update_balance', 10, 2);
             $table->string('location');
-            $table->unsignedBigInteger('account_id');
+            $table->integer('account_id');
 
             $table->foreign('account_id')->references('account_id')->on('users');
             $table->timestamps();

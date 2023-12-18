@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityLog_controller;
 use App\Http\Controllers\Authentication_controller;
 use App\Http\Controllers\Category_controller;
 use App\Http\Controllers\Product_controller;
@@ -62,7 +63,7 @@ Route::controller(Stock_controller::class)->group(function () {
 Route::controller(Product_controller::class)->group(function () {
     Route::get('/product',            'index');
     Route::get('/product/{id}',       'show');
-    Route::put('/product/{id}',       'update');
+    Route::post('/product/{id}',       'update');
     Route::post('/product',           'store')->name('product.store');
     Route::delete('/product/{id}',    'destroy');
     Route::put('/product/img/{id}',    'image')->name('product.image');
@@ -78,6 +79,8 @@ Route::controller(Sales_controller::class)->group(function () {
     Route::put('/sales/{id}',       'update');
     Route::post('/sales',           'store');
     Route::delete('/sales/{id}',    'destroy');
+
+    Route::get('/annual/{id}',            'annualSales');
 });
 
 Route::controller(Transaction_controller::class)->group(function () {
@@ -87,7 +90,10 @@ Route::controller(Transaction_controller::class)->group(function () {
     Route::post('/transaction',           'store');
     Route::delete('/transaction/{id}',    'destroy');
 
-    Route::get('/transaction/user',    'userTrans');
+    Route::get('/userTrans',             'userTrans');
+    Route::get('/transSort',             'transSort');
+    Route::get('/BalanceTrans',          'transBalance');
+    // Route::get('/transaction/user',    'userTrans');
 });
 
 Route::controller(Category_controller::class)->group(function () {
@@ -96,6 +102,16 @@ Route::controller(Category_controller::class)->group(function () {
     Route::put('/category/{id}',       'update');
     Route::post('/category',           'store');
     Route::delete('/category/{id}',    'destroy');
+});
+
+Route::controller(ActivityLog_controller::class)->group(function () {
+    Route::get('/activity',            'index');
+    Route::get('/activity/{id}',       'show');
+    Route::put('/activity/{id}',       'update');
+    Route::post('/activity',           'store');
+    Route::delete('/activity/{id}',    'destroy');
+
+    Route::get('/user-activity',            'userActivity');
 });
 // });
 
