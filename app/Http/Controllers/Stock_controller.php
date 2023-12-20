@@ -72,12 +72,12 @@ class Stock_controller extends Controller
         return $leftJoin;
     }
 
-    // public function sumStock()
-    // {
-    //     // Sum the 'stock' column for all products
-    //     $overallStock = Stock_Model::sum('stock');
+    public function sumStock()
+    {
+        // Sum the 'stock' column for all products
+        $overallStock = Stock_Model::sum('stock');
 
-    //     // Now, $overallStock contains the sum of the 'stock' column for all products
-    //     return $overallStock;
-    // }
+        // Now, $overallStock contains the sum of the 'stock' column for all products
+        return $overallStock;
+    }
 }
