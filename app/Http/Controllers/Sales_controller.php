@@ -75,8 +75,8 @@ class Sales_controller extends Controller
     public function weeklySales()
     {
         $weeklySalesSum = Sales_model::select(
-            DB::raw("EXTRACT(YEAR FROM created_at) AS Year"),
-            DB::raw("EXTRACT(WEEK FROM created_at) AS Week"),
+            // DB::raw("EXTRACT(YEAR FROM created_at) AS Year"),
+            // DB::raw("EXTRACT(WEEK FROM created_at) AS Week"),
             DB::raw('SUM(quantity) AS Total_Quantity')
         )
             ->groupBy(DB::raw("EXTRACT(YEAR FROM created_at)"), DB::raw("EXTRACT(WEEK FROM created_at)"))
