@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
 
 
-            $table->foreign('prod_id')->references('prod_id')->on('product'); // Adjusted foreign key references
+            $table->foreign('prod_id')->references('prod_id')->on('product')->onDelete('cascade');; // Adjusted foreign key references
             $table->foreign('account_id')->references('account_id')->on('users'); // Corrected reference to 'users' table
         });
     }

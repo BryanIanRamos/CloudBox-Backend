@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('prod_id');
             $table->unsignedBigInteger('trans_id');
 
-            $table->foreign('prod_id')->references('prod_id')->on('product');
+            $table->foreign('prod_id')->references('prod_id')->on('product')->onDelete('cascade');;
             $table->foreign('trans_id')->references('trans_id')->on('transactions');
 
             $table->timestamps();

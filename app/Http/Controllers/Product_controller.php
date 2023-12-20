@@ -149,51 +149,51 @@ class Product_controller extends Controller
         }
     }
 
-    public function destroy(string $mainTableId)
-    {
-        try {
-            // Begin a database transaction
-            DB::products();
+    // public function destroy(string $mainTableId)
+    // {
+    //     try {
+    //         // Begin a database transaction
+    //         DB::products();
 
-            // Retrieve related records from TableB (stock)
-            $relatedRecordsTableB = DB::table('stock')->where('prod_id', $mainTableId)->get();
+    //         // Retrieve related records from TableB (stock)
+    //         $relatedRecordsTableB = DB::table('stock')->where('prod_id', $mainTableId)->get();
 
-            // Check if there are any related records in the stock table
-            if ($relatedRecordsTableB->isNotEmpty()) {
-                // Delete related records from TableB (stock)
-                DB::table('stock')->where('prod_id', $mainTableId)->delete();
-            }
+    //         // Check if there are any related records in the stock table
+    //         if ($relatedRecordsTableB->isNotEmpty()) {
+    //             // Delete related records from TableB (stock)
+    //             DB::table('stock')->where('prod_id', $mainTableId)->delete();
+    //         }
 
-            // Perform deletion of the record from MainTable (product)
-            DB::table('product')->where('prod_id', $mainTableId)->delete();
+    //         // Perform deletion of the record from MainTable (product)
+    //         DB::table('product')->where('prod_id', $mainTableId)->delete();
 
-            // Commit the transaction
-            DB::commit();
+    //         // Commit the transaction
+    //         DB::commit();
 
-            // Return a success message or indicator
-            return ['success' => true, 'product' => 'Deletion successful'];
-        } catch (\Exception $e) {
-            // Something went wrong, rollback the transaction
-            DB::rollBack();
+    //         // Return a success message or indicator
+    //         return ['success' => true, 'product' => 'Deletion successful'];
+    //     } catch (\Exception $e) {
+    //         // Something went wrong, rollback the transaction
+    //         DB::rollBack();
 
-            // Return an error message or indicator
-            return ['success' => false, 'product' => 'Deletion failed: ' . $e->getMessage()];
-        }
-    }
+    //         // Return an error message or indicator
+    //         return ['success' => false, 'product' => 'Deletion failed: ' . $e->getMessage()];
+    //     }
+    // }
 
 
 
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(string $id)
-    // {
-    //     $product = Product_model::findOrFail($id);
+    public function destroy(string $id)
+    {
+        $product = Product_model::findOrFail($id);
 
-    //     $product->delete();
+        $product->delete();
 
-    //     return $product;
-    // }
+        return $product;
+    }
 
     /**
      * Update image the specified resource from storage.
