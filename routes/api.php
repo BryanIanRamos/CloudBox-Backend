@@ -52,13 +52,13 @@ Route::controller(User_controller::class)->group(function () {
 });
 
 Route::controller(Stock_controller::class)->group(function () {
-    Route::get('/stocks',            'index');
+    Route::get('/stock',            'index');
     // Route::get('/stock/sum',        'sumStock');
-    Route::get('/stocks/user',       'userStock');
-    Route::get('/stocks/{id}',       'show');
-    Route::put('/stocks/{id}',       'update');
-    Route::post('/stocks',        'store');
-    Route::delete('/stocks/{id}',    'destroy');
+    Route::get('/stock/user',       'userStock');
+    Route::get('/stock/{id}',       'show');
+    Route::put('/stock/{id}',       'update');
+    Route::post('/stock',        'store');
+    Route::delete('/stock/{id}',    'destroy');
 });
 
 Route::controller(Product_controller::class)->group(function () {
