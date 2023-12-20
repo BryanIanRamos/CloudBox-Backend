@@ -155,23 +155,21 @@ class Product_controller extends Controller
             // Begin a database transaction
             DB::products();
 
-            // Retrieve related records from TableA (activity_log)
-            $relatedRecordsTableA = DB::table('activity_log')->where('act_id', $mainTableId)->get();
-
-            // Perform deletion of related records from TableA (activity_log)
-            DB::table('activity_log')->where('act_id', $mainTableId)->delete();
-
             // Retrieve related records from TableB (stock)
             $relatedRecordsTableB = DB::table('stock')->where('prod_id', $mainTableId)->get();
 
-            // Perform deletion of related records from TableB (stock)
-            DB::table('stock')->where('prod_id', $mainTableId)->delete();
+            // Check if there are any related records in the stock table
+            if ($relatedRecordsTableB->isNotEmpty()) {
+                // Delete related records from TableB (stock)
+                DB::table('stock')->where('prod_id', $mainTableId)->delete();
+            }
 
             // Perform deletion of the record from MainTable (product)
             DB::table('product')->where('prod_id', $mainTableId)->delete();
 
             // Commit the transaction
             DB::commit();
+
             // Return a success message or indicator
             return ['success' => true, 'product' => 'Deletion successful'];
         } catch (\Exception $e) {
