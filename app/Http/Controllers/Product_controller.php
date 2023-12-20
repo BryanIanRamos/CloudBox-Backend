@@ -143,9 +143,42 @@ class Product_controller extends Controller
 
             $product->update($validatedData);
 
-            return response()->json(['message' => 'Product updated successfully huhiuhiuhiuhiuhiuhiuh', 'product' => $product], 200);
+            return response()->json(['message' => 'Product updated successfully', 'product' => $product], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to update product', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function destroy($mainTableId)
+    {
+        try {
+            // Begin a database transaction
+            DB::beginTransaction();
+
+            // Retrieve related records from TableA and TableB
+            $relatedRecordsTableA = DB::table('activity_log')->where('act_id', $mainTableId)->get();
+            $relatedRecordsTableB = DB::table('stock')->where('stock_id', $mainTableId)->get();
+
+            // Perform deletion of related records from TableA
+            DB::table('activity_log')->where('act_id', $mainTableId)->delete();
+
+            // Perform deletion of related records from TableB
+            DB::table('stock')->where('stock_id', $mainTableId)->delete();
+
+            // Finally, delete the record from MainTable
+            DB::table('product')->where('prod_id', $mainTableId)->delete();
+
+            // Commit the transaction
+            DB::commit();
+
+            // Return a success message or indicator
+            return ['success' => true, 'product' => 'Deletion successful'];
+        } catch (\Exception $e) {
+            // Something went wrong, rollback the transaction
+            DB::rollBack();
+
+            // Return an error message or indicator
+            return ['success' => false, 'product' => 'Deletion failed: ' . $e->getMessage()];
         }
     }
 
@@ -154,14 +187,14 @@ class Product_controller extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $product = Product_model::findOrFail($id);
+    // public function destroy(string $id)
+    // {
+    //     $product = Product_model::findOrFail($id);
 
-        $product->delete();
+    //     $product->delete();
 
-        return $product;
-    }
+    //     return $product;
+    // }
 
     /**
      * Update image the specified resource from storage.
