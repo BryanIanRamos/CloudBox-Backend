@@ -24,7 +24,7 @@ class User_request extends FormRequest
     {
         if (request()->routeIs('user.login')) {
             return [
-                'email'     =>  ['required|email|string|max:255', Rule::unique('users')],
+                'email'     =>  'required|string|email|max:255',
                 'password'  =>  'required|min:8',
             ];
         } else if (request()->routeIs('user.store')) {
@@ -41,7 +41,7 @@ class User_request extends FormRequest
             ];
         } else if (request()->routeIs('user.email')) {
             return [
-                'email'     =>  ['required|email|string|max:255', Rule::unique('users')],
+                'email'     =>  'required|string|email|unique:App\Models\User|max:255',
             ];
         } else if (request()->routeIs('user.password')) {
             return [

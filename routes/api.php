@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('/login', [Authentication_controller::class, 'login'])->name('user.login');
-Route::post('/user', [User_controller::class,  'store'])->name('user.store');
+Route::post('/signup', [User_controller::class,  'store'])->name('user.store');
 
 
 

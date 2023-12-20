@@ -21,16 +21,16 @@ class User_controller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(User_request $request)
-    // {
-    //     $validated = $request->validated();
+    public function store(User_request $request)
+    {
+        $validated = $request->validated();
 
-    //     $validated['password'] = Hash::make($validated['password']);
+        $validated['password'] = Hash::make($validated['password']);
 
-    //     $user = User::create($validated);
+        $user = User::create($validated);
 
-    //     return $user;
-    // }
+        return $user;
+    }
 
     // public function store(User_request $request)
     // {
