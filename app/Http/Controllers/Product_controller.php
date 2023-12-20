@@ -156,14 +156,15 @@ class Product_controller extends Controller
             DB::beginTransaction();
 
             // Retrieve related records from TableA and TableB
-            $relatedRecordsTableA = DB::table('activity_log')->where('act_id', $mainTableId)->get();
             $relatedRecordsTableB = DB::table('stock')->where('stock_id', $mainTableId)->get();
+            $relatedRecordsTableA = DB::table('activity_log')->where('act_id', $mainTableId)->get();
+
+            // Perform deletion of related records from TableB
+            DB::table('stock')->where('stock_id', $mainTableId)->delete();
 
             // Perform deletion of related records from TableA
             DB::table('activity_log')->where('act_id', $mainTableId)->delete();
 
-            // Perform deletion of related records from TableB
-            DB::table('stock')->where('stock_id', $mainTableId)->delete();
 
             // Finally, delete the record from MainTable
             DB::table('product')->where('prod_id', $mainTableId)->delete();
