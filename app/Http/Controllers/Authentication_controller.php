@@ -42,30 +42,30 @@ class Authentication_controller extends Controller
     /**
      * Logout using the specified resource.
      */
-    // public function logout(Request $request)
-    // {
-    //     $request->user()->tokens()->delete();
-
-    //     $response = [
-    //         'message' => 'logout.'
-    //     ];
-
-    //     return $response;
-    // }
-
     public function logout(Request $request)
     {
-        $request
-            ->user()
-            ->currentAccessToken()
-            ->delete();
+        $request->user()->tokens()->delete();
 
-        return response()->json(
-            [
-                'status' => 'success',
-                'message' => 'Logged out successfully',
-            ],
-            200
-        );
+        $response = [
+            'message' => 'logout.'
+        ];
+
+        return $response;
     }
+
+    // public function logout(Request $request)
+    // {
+    //     $request
+    //         ->user()
+    //         ->currentAccessToken()
+    //         ->delete();
+
+    //     return response()->json(
+    //         [
+    //             'status' => 'success',
+    //             'message' => 'Logged out successfully',
+    //         ],
+    //         200
+    //     );
+    // }
 }

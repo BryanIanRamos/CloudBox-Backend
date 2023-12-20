@@ -251,17 +251,11 @@ class Product_controller extends Controller
 
     public function prodStock()
     {
-        $leftJoin = DB::table('product p')
-            ->leftJoin('stock s', 'p.prod_id', '=', 'prod_id')
+        $leftJoin = DB::table('product')
+            ->leftJoin('stock', 'product.prod_id', '=', 'stock.prod_id')
             ->select(
-                'product.prod_id',
-                'product.prod_name',
-                'product.price',
-                'product.description',
-                'product.status',
-                'product.category_id',
-                'stock.quantity', // Assuming 'quantity' column exists in 'stock' table
-                // Add other columns from 'stock' table that you need
+                'product.*',
+                'stock.quantity',
             )
             ->get();
 
