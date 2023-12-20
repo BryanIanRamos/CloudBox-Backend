@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User_request;
 use App\Models\User;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule as ValidationRule;
 
 class User_controller extends Controller
 {
@@ -22,30 +20,28 @@ class User_controller extends Controller
 
     /**
      * Store a newly created resource in storage.
-    //  */
+     */
     // public function store(User_request $request)
     // {
     //     $validated = $request->validated();
 
-    //     if ($validated) {
+    //     $validated['password'] = Hash::make($validated['password']);
 
+    //     $user = User::create($validated);
 
-    //         $validated['password'] = Hash::make($validated['password']);
-    //         $user = User::create($validated);
-    //         return response()->json([$user]);
-    //     }
+    //     return $user;
     // }
 
-    public function store(User_request $request)
-    {
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => ['required', 'email', Rule::unique('users')],
-            'password' => 'required|min:8',
+    // public function store(User_request $request)
+    // {
+    //     $request->validate([
+    //         'first_name' => 'required',
+    //         'last_name' => 'required',
+    //         'email' => ['required', 'email', Rule::unique('users')],
+    //         'password' => 'required|min:8',
 
-        ]);
-    }
+    //     ]);
+    // }
 
     /**
      * Display the specified resource.
