@@ -149,29 +149,29 @@ class Product_controller extends Controller
         }
     }
 
-    public function destroy($mainTableId)
+    public function destroy(string $mainTableId)
     {
         try {
             // Begin a database transaction
-            DB::beginTransaction();
+            DB::products();
 
-            // Retrieve related records from TableA and TableB
-            $relatedRecordsTableB = DB::table('stock')->where('stock_id', $mainTableId)->get();
+            // Retrieve related records from TableA (activity_log)
             $relatedRecordsTableA = DB::table('activity_log')->where('act_id', $mainTableId)->get();
 
-            // Perform deletion of related records from TableB
-            DB::table('stock')->where('stock_id', $mainTableId)->delete();
-
-            // Perform deletion of related records from TableA
+            // Perform deletion of related records from TableA (activity_log)
             DB::table('activity_log')->where('act_id', $mainTableId)->delete();
 
+            // Retrieve related records from TableB (stock)
+            $relatedRecordsTableB = DB::table('stock')->where('prod_id', $mainTableId)->get();
 
-            // Finally, delete the record from MainTable
+            // Perform deletion of related records from TableB (stock)
+            DB::table('stock')->where('prod_id', $mainTableId)->delete();
+
+            // Perform deletion of the record from MainTable (product)
             DB::table('product')->where('prod_id', $mainTableId)->delete();
 
             // Commit the transaction
             DB::commit();
-
             // Return a success message or indicator
             return ['success' => true, 'product' => 'Deletion successful'];
         } catch (\Exception $e) {
