@@ -57,7 +57,7 @@ Route::controller(Stock_controller::class)->group(function () {
     Route::get('/stocks/user',       'userStock');
     Route::get('/stocks/{id}',       'show');
     Route::put('/stocks/{id}',       'update');
-    Route::post('/stocks',           'store');
+    Route::post('/post-stock',           'store');
     Route::delete('/stocks/{id}',    'destroy');
 });
 
