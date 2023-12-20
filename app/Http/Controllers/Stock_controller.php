@@ -75,9 +75,9 @@ class Stock_controller extends Controller
     public function sumStock()
     {
         // Sum the 'stock' column for all products
-        $overallStock = Stock_Model::sum('quantity');
+        $totalQuantity = DB::table('stock')->sum('quantity');
 
         // Now, $overallStock contains the sum of the 'stock' column for all products
-        return $overallStock;
+        return $totalQuantity;
     }
 }

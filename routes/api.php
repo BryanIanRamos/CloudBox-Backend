@@ -53,12 +53,13 @@ Route::controller(User_controller::class)->group(function () {
 
 Route::controller(Stock_controller::class)->group(function () {
     Route::get('/stock',            'index');
-    Route::get('/stock-sum',        'sumStock');
     Route::get('/stock/user',       'userStock');
     Route::get('/stock/{id}',       'show');
     Route::put('/stock/{id}',       'update');
     Route::post('/stock',        'store');
     Route::delete('/stock/{id}',    'destroy');
+
+    Route::get('/sum-stock',        'sumStock');
 });
 
 Route::controller(Product_controller::class)->group(function () {
