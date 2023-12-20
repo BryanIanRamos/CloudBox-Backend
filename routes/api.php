@@ -83,6 +83,7 @@ Route::controller(Sales_controller::class)->group(function () {
     Route::delete('/sales/{id}',    'destroy');
 
     Route::get('/annual/{id}',            'annualSales');
+    Route::get('/weekly-sales',      'weeklySales');
 });
 
 Route::controller(Transaction_controller::class)->group(function () {
