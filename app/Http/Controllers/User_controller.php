@@ -25,6 +25,13 @@ class User_controller extends Controller
     {
         $validated = $request->validated();
 
+        if (!$validated) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Email does already exist.'
+            ], 409);
+        }
+
         $validated['password'] = Hash::make($validated['password']);
 
         $user = User::create($validated);
