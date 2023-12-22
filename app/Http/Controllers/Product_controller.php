@@ -82,7 +82,7 @@ class Product_controller extends Controller
 
         // Return the created product
         // return $product;
-        return response()->json($product, 201);
+        return response()->json([$product, 201]);
     }
 
 
