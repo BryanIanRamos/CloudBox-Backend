@@ -81,7 +81,8 @@ class Product_controller extends Controller
         $product = Product_model::create($validatedData);
 
         // Return the created product
-        return $product;
+        // return $product;
+        return response()->json($product, 201);
     }
 
 
